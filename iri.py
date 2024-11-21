@@ -3,6 +3,7 @@ import joblib
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
+from PIL import Image
 
 loaded_iris = joblib.load('iris_pipe.pkl')
 
@@ -28,11 +29,11 @@ def che_fiore_e(df_fiore):
     
     pred = loaded_iris.predict(df_fiore)[0]
     if pred == 'Iris-setosa':
-        st.image("Iris_setosa.jpg", caption= "Iris setosa"),
-        if pred == 'Iris-versicolor':
-            st.image("Iris_versicolor.jpg", caption= "Iris versicolor"),
-        else:
-            st.image("iris_virginica.jpg", caption= "iris virginica")
+        st.image(Image.open("Iris_setosa.jpg"), use_container_width=True, caption= "Iris setosa"),
+    if pred == 'Iris-versicolor':
+        st.image(Image.open("Iris_versicolor.jpg"),use_container_width=True, caption= "Iris versicolor"),
+    else:
+        st.image(Image.open("iris_virginica.jpg"),use_container_width=True ,caption= "iris virginica")
                 
         
 

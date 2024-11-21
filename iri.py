@@ -8,10 +8,10 @@ loaded_iris = joblib.load('iris_pipe.pkl')
 
 
 
-lunghezza_sepalo = st.slider("lunghezza del sepalo", 0, 130, 25)
-larghezza_sepalo = st.slider("larghezza del sepalo'", 0, 130, 25)
-lunghezza_petalo = st.slider("lunghezza del petalo", 0, 130, 25)
-larghezza_petalo = st.slider("larghezza del petalo", 0, 130, 25)
+lunghezza_sepalo = st.slider("lunghezza del sepalo", 0, 1000, 25)
+larghezza_sepalo = st.slider("larghezza del sepalo'", 0, 1000, 25)
+lunghezza_petalo = st.slider("lunghezza del petalo", 0, 1000, 25)
+larghezza_petalo = st.slider("larghezza del petalo", 0, 1000, 25)
 
 
 
@@ -21,12 +21,21 @@ fiore = {'lunghezza del sepalo':[lunghezza_sepalo],
         'larghezza del petalo': [larghezza_petalo],
         }
 
+
 df_fiore = pd.DataFrame(fiore)
 
 def che_fiore_e(df_fiore):
     
     pred = loaded_iris.predict(df_fiore)[0]
-    
+    if pred == 'Iris-setosa':
+        st.image("Iris_setosa.jpg", caption= "Iris setosa"),
+        if pred == 'Iris-versicolor':
+            st.image("Iris_versicolor.jpg", caption= "Iris versicolor"),
+        else:
+            st.image("iris_virginica.jpg", caption= "iris virginica")
+                
+        
+
     return pred
 
 def main():
